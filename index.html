@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Be My Valentine 💖</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.page {
+    display: none;
+    text-align: center;
+    color: white;
+    padding: 20px;
+}
+
+.active {
+    display: block;
+}
+
+h1 {
+    font-family: 'Pacifico', cursive;
+    font-size: 3em;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+}
+
+p {
+    font-size: 1.4em;
+}
+
+button {
+    padding: 15px 30px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+.yes {
+    background: #ff4b7d;
+    color: white;
+}
+
+.no {
+    background: white;
+    color: #ff4b7d;
+    position: absolute;
+}
+
+.next {
+    background: white;
+    color: #ff4b7d;
+}
+
+.love {
+    font-size: 4em;
+    background: linear-gradient(45deg, #ff416c, #ff4b2b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 10px #ff4b7d; }
+    to { text-shadow: 0 0 30px white; }
+}
+
+img {
+    width: 200px;
+    border-radius: 20px;
+    margin: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.heart {
+    position: absolute;
+    font-size: 20px;
+    animation: float 6s infinite ease-in;
+    opacity: 0.8;
+}
+
+@keyframes float {
+    0% { transform: translateY(100vh); }
+    100% { transform: translateY(-10vh); }
+}
+</style>
+</head>
+
+<body>
+
+<iframe id="musicPlayer"
+    src=""
+    allow="autoplay; encrypted-media"
+    style="display:none;">
+</iframe>
+
+<div class="heart" style="left:10%">❤️</div>
+<div class="heart" style="left:30%">💖</div>
+<div class="heart" style="left:50%">💕</div>
+<div class="heart" style="left:70%">💘</div>
+<div class="heart" style="left:90%">❤️</div>
+
+<div class="page active" id="page1">
+    <h1>Will You Be My Valentine? 💝</h1>
+    <img src="https://i.imgur.com/9bK0Z8N.png">
+    <br>
+    <button class="yes" onclick="startMusicAndGo(2)">Yes 💕</button>
+    <button class="no" id="noBtn">No 😝</button>
+</div>
+
+<div class="page" id="page2">
+    <h1>I knew you would say YES 😍</h1>
+    <img src="https://i.imgur.com/Y4a5XGk.png">
+    <p>You just made me the happiest person 💖</p>
+    <button class="next" onclick="goToPage(3)">Next ➡️</button>
+</div>
+
+<div class="page" id="page3">
+    <h1 class="love">I LOVE YOU ❤️</h1>
+    <img src="https://i.imgur.com/XO8GZQn.png">
+    <img src="https://i.imgur.com/Dt7ZCjT.png">
+    <p>Forever & Always 💞</p>
+</div>
+
+<script>
+function goToPage(n) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('page' + n).classList.add('active');
+}
+
+const noBtn = document.getElementById("noBtn");
+noBtn.addEventListener("mouseover", () => {
+    noBtn.style.left = Math.random() * (window.innerWidth - 120) + "px";
+    noBtn.style.top = Math.random() * (window.innerHeight - 120) + "px";
+});
+
+function startMusicAndGo(page) {
+    const videoId = "nDjloeIB3Pc";
+    document.getElementById("musicPlayer").src =
+        `https://www.youtube.com/embed/${videoId}?autoplay=1&loop=1&playlist=${videoId}`;
+    goToPage(page);
+}
+</script>
+
+</body>
+</html>
